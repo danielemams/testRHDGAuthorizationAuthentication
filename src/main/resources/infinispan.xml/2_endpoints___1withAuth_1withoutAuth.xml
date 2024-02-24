@@ -1,0 +1,19 @@
+<server xmlns="urn:infinispan:server:14.0">
+    <socket-bindings default-interface="public" port-offset="${infinispan.socket.binding.port-offset:0}">
+        <socket-binding name="default" port="${infinispan.bind.port:11222}"/>
+        <socket-binding name="memcached" port="11221"/>
+        <socket-binding name="without_pwd" port="11223" interface="public"/>
+    </socket-bindings>
+
+    <!-- Disable authentication on 1 endpoint -->
+    <endpoints>
+        <endpoint security-realm="default" socket-binding="default">
+            <hotrod-connector/>
+            <rest-connector/>
+        </endpoint>
+        <endpoint socket-binding="without_pwd">
+            <hotrod-connector/>
+            <rest-connector/>
+        </endpoint>
+    </endpoints>
+</server>
