@@ -9,6 +9,12 @@ public class Client {
 
     public static void main(String[] args) {
         final ConfigurationBuilder builder = new ConfigurationBuilder();
+        // hotrod without authentication()
+        builder.addServer()
+                .host("127.0.0.1")
+                .port(ConfigurationProperties.DEFAULT_HOTROD_PORT);
+        /*
+        // hotrod with authentication()
         builder.addServer()
                 .host("127.0.0.1")
                 .port(ConfigurationProperties.DEFAULT_HOTROD_PORT)
@@ -16,6 +22,7 @@ public class Client {
                 .username("admin")
                 .password("admin")
                 .saslMechanism("SCRAM-SHA-512");
+         */
         final RemoteCacheManager remoteCacheManager = new RemoteCacheManager(builder.build());
         System.out.println("start operations()");
         // 1. list_operation() all caches names
